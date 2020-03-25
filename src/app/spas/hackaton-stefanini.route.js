@@ -31,6 +31,11 @@
                 templateUrl: 'app/spas/perfil/template/perfil-listar.tpl.html',
                 controller: 'PerfilListarController as vm'
             })
+            .when('/EditarPerfis/:idPerfil', {
+                templateUrl: 'app/spas/perfil/template/perfil-incluir-alterar.tpl.html',
+                controller: 'PerfilIncluirAlterarController as vm'
+            })
+        
 
             .otherwise({
                 templateUrl: 'index_ERROR.html'

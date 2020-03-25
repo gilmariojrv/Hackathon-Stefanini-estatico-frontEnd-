@@ -31,7 +31,6 @@ function PessoaIncluirAlterarController(
     };
     vm.enderecoDefault = {
         id: null,
-        idPessoa: null,
         cep: "",
         uf: "",
         localidade: "",
@@ -40,9 +39,9 @@ function PessoaIncluirAlterarController(
         complemento: ""
     };
 
-    vm.urlEndereco = "http://localhost:8082/treinamento/api/enderecos/";
-    vm.urlPerfil = "http://localhost:8082/treinamento/api/perfils/";
-    vm.urlPessoa = "http://localhost:8082/treinamento/api/pessoas/";
+    vm.urlEndereco = "http://localhost:8081/treinamento/api/enderecos/";
+    vm.urlPerfil = "http://localhost:8081/treinamento/api/perfils/";
+    vm.urlPessoa = "http://localhost:8081/treinamento/api/pessoas/";
 
     /**METODOS DE INICIALIZACAO */
     vm.init = function () {
@@ -102,19 +101,12 @@ function PessoaIncluirAlterarController(
     };
 
     vm.incluir = function () {
+        
         vm.pessoa.dataNascimento = vm.formataDataJava(vm.pessoa.dataNascimento);
 
         var objetoDados = angular.copy(vm.pessoa);
-        var listaEndereco = [];
-        angular.forEach(objetoDados.enderecos, function (value, key) {
-            if (value.complemento.length > 0) {
-                value.idPessoa = objetoDados.id;
-                listaEndereco.push(angular.copy(value));
-            }
-        });
-
-        objetoDados.enderecos = listaEndereco;
-        if (vm.perfil !== null){
+       
+        
 
             var isNovoPerfil = true;
             
@@ -125,7 +117,7 @@ function PessoaIncluirAlterarController(
             });
             if (isNovoPerfil)
                 objetoDados.perfils.push(vm.perfil);
-        }
+        
         if (vm.acao == "Cadastrar") {
 
             vm.salvar(vm.urlPessoa, objetoDados).then(
@@ -181,7 +173,7 @@ function PessoaIncluirAlterarController(
     }
 
     vm.salvar = function (url, objeto) {
-
+        
         var deferred = $q.defer();
         var obj = JSON.stringify(objeto);
         HackatonStefaniniService.incluir(url, obj).then(

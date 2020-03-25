@@ -27,6 +27,12 @@ function PerfilIncluirAlterarController(
         dataHoraInclusao: "",
         dataHoraAlteracao: ""
     };
+    vm.perfilCadastro = {
+        nome: "",
+        descricao: "",
+        dataHoraInclusao: "",
+        dataHoraAlteracao: ""
+    }
 
     vm.data = {
         dataHoraInclusao: "",
@@ -77,10 +83,10 @@ function PerfilIncluirAlterarController(
     };
 
     vm.incluir = function() {
+       
         if (vm.acao == "Cadastrar") {
-            vm.perfil.dataHoraInclusao = vm.criarData();
-
-            var objetoDados = angular.copy(vm.perfil);
+            vm.perfilCadastro.dataHoraInclusao = vm.criarData();
+            var objetoDados = angular.copy(vm.perfilCadastro);
             vm.salvar(vm.url, objetoDados).then(
                 function (perfilRetorno) {
                     vm.retornarTelaListagem();
@@ -133,6 +139,7 @@ function PerfilIncluirAlterarController(
     };
 
     vm.salvar = function (url, objeto) {
+       
         var deferred = $q.defer();
         var obj = JSON.stringify(objeto);
         HackatonStefaniniService.incluir(url, obj).then(

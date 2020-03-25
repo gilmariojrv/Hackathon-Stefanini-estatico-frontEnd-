@@ -1,5 +1,5 @@
 <style>
-   .disabledDiv {
+    .disabledDiv {
     pointer-events: none;
     opacity: 0.4;
   }
@@ -9,6 +9,15 @@
   <div class="container">
     <div ng-class="{'disabledDiv': vm.perfil !== undefined}"
     style="text-align: right;">
+   
+   
+   <form> <div class="mx-auto" style="width: 200px;">
+    <h5 class="modal-title">{{vm.tituloTela}}</h5>
+</div></form>
+   
+
+
+
       <img
         src="../../../app/imagens/bootstrap-icons/icons/document-richtext.svg"
         style="cursor: pointer;"
@@ -83,4 +92,4 @@
       </li>
     </ul>
   </nav>
-</div> 
+</div>

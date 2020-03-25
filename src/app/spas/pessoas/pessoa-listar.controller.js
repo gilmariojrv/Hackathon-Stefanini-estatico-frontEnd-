@@ -10,8 +10,8 @@ function PessoaListarController($rootScope, $scope, $location,
     vm.ultimoIndex = 0;
     vm.contador = 0;
 
-    vm.url = "http://localhost:8082/treinamento/api/pessoas/";
-    vm.urlEndereco = "http://localhost:8082/treinamento/api/enderecos/";
+    vm.url = "http://localhost:8081/treinamento/api/pessoas/";
+    vm.urlEndereco = "http://localhost:8081/treinamento/api/enderecos/";
 
     vm.init = function () {
         HackatonStefaniniService.listar(vm.url).then(

@@ -25,37 +25,40 @@
           <div class="form-group">
               <label for="nomePerfil">Nome:</label>
               <input
-                  type="nome" 
+                  type="text" 
                   class="form-control"
                   id="nomePerfil"
-                  ng-model="vm.perfil.nome"
+                  ng-model="vm.perfilCadastro.nome"
                   placeholder="Digite o nome do Perfil"
               />
           </div>
           <div class="form-group">
               <label for="descricao">Descrição:</label>
               <textarea 
+              class="form-control"
                   name="descricao"
                   id="descricaoPerfil" 
                   cols="50" 
                   rows="4"
-                  ng-model="vm.perfil.descricao"
+                  ng-model="vm.perfilCadastro.descricao"
                   placeholder="Digite uma Descrição"></textarea>
           </div>
+
           <div class="form-group">
-              <label for="dataHoraInclusao">Data da Criação:</label>
-              <input 
-                  type="text"
-                  id="dataHoraInclusao"
-                  ng-model="vm.perfil.dataHoraInclusao"
-                  disabled>
-              <label for="dataHoraAlteracao">Data da Alteração:</label>
-              <input 
-                  type="text"
-                  id="dataHoraAlteracao"
-                  ng-model="vm.perfil.dataHoraAlteracao"
-                  disabled>
-          </div>
+            <label for="dataHoraInclusao">Data da Criação:</label>
+            <input 
+                type="text"
+                id="dataHoraInclusao"
+                ng-model="vm.perfil.dataHoraInclusao"
+                disabled>
+            <label for="dataHoraAlteracao">Data da Alteração:</label>
+            <input 
+                type="text"
+                id="dataHoraAlteracao"
+                ng-model="vm.perfil.dataHoraAlteracao"
+                disabled>
+        </div>
+        
       </form>
   </div>
   <div
