@@ -8,7 +8,9 @@ function PerfilListarController($rootScope, $scope, $location,
     vm.ultimoIndex = 0;
     vm.contador = 0;
 
+
     vm.url = "http://localhost:8081/treinamento/api/perfils/";
+
     
 
     vm.init = function () {
