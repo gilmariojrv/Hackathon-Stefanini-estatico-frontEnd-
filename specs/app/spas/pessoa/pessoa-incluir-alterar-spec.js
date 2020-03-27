@@ -1,4 +1,4 @@
-describe('HomeController', function(){
+describe('PessoaIncluirAlterarController', function(){
     var PessoaTeste;
     var $location, HackatonStefaniniService;
 
@@ -17,4 +17,4 @@ describe('HomeController', function(){
     });
 
 
-}) 
+})

@@ -1,8 +1,6 @@
 (function (angular) {
     'use strict';
-
     var mesesDoAno = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'];
-
     /*
      * Converte uma chave de usuário em matrícula
      */
@@ -11,7 +9,6 @@
             return parseInt(chave.replace(/\D/g, ''));
         };
     };
-
     /**
      * Converte para float
      */
@@ -22,7 +19,6 @@
             }
         };
     };
-
     /**
      * Converte Inteiro para Float
      */
@@ -33,7 +29,6 @@
             }
         };
     };
-
     /*
      * Formata uma chave de usuário a partir de uma matrícula
      */
@@ -43,7 +38,6 @@
             return 'F' + ('0000000' + matricula).substring(matricula.length);
         };
     };
-
     /*
      * Adiciona caracteres à esquerda até completar o tamanho informado
      */
@@ -56,32 +50,26 @@
             return str;
         };
     };
-
     var mesAno = function() {
         return function(data, padrao) {
             data = data + '';
-
             if (!data) {
                 return padrao || '';
             }
-
             var mes = parseInt(data.substring(3, 5));
             var ano = data.substring(6, 10);
-
             if (mes > 0 && ano !== '') {
                 return mesesDoAno[mes - 1] + '/' + ano;
             }
             return data;
         };
     };
-
     var capitalizeFirstWord = function() {
         return function(text) {
             if (!text) return '';
             return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
         };
     };
-
     var capitalizeEachWord = function() {
         return function(text) {
             if (!text) return '';
@@ -91,7 +79,6 @@
             });
         };
     };
-
     var formataMCI = function() {
         return function(text) {
             if (!text) return '';
@@ -103,7 +90,6 @@
             return dado;
         };
     };
-
     angular.module('stefanini.filters', [])
         .filter('converterMatricula', converterMatricula)
         .filter('formatarChave', formatarChave)
@@ -112,6 +98,7 @@
         .filter('capitalizeFirstWord', capitalizeFirstWord)
         .filter('capitalizeEachWord', capitalizeEachWord)
         .filter('converterFloat', converterFloat)
-        .filter('converterInteiroParaFloat', converterInteiroParaFloat);
+        .filter('converterInteiroParaFloat', converterInteiroParaFloat)
+        .filter('formataMCI', formataMCI);
 
 })(angular);

@@ -40,15 +40,9 @@ function PessoaIncluirAlterarController(
         complemento: ""
     };
 
-<<<<<<< Updated upstream
-    vm.urlEndereco = "http://localhost:8080/treinamento/api/enderecos/";
-    vm.urlPerfil = "http://localhost:8080/treinamento/api/perfils/";
-    vm.urlPessoa = "http://localhost:8080/treinamento/api/pessoas/";
-=======
     vm.urlEndereco = "http://localhost:8081/treinamento/api/enderecos/";
     vm.urlPerfil = "http://localhost:8081/treinamento/api/perfils/";
     vm.urlPessoa = "http://localhost:8081/treinamento/api/pessoas/";
->>>>>>> Stashed changes
 
     /**METODOS DE INICIALIZACAO */
     vm.init = function () {
