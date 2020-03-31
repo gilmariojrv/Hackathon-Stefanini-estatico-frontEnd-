@@ -43,6 +43,28 @@ function PessoaIncluirAlterarController(
     vm.urlEndereco = "http://localhost:8081/treinamento/api/enderecos/";
     vm.urlPerfil = "http://localhost:8081/treinamento/api/perfils/";
     vm.urlPessoa = "http://localhost:8081/treinamento/api/pessoas/";
+    vm.urlbuscaCep = "http://localhost:8081/treinamento/api/enderecos/buscar/" ;
+
+ 
+  
+    vm.buscarCep = function(){
+
+        HackatonStefaniniService.listar(vm.urlbuscaCep + vm.enderecoDefault.cep).then(
+            function (response){
+            
+              vm.enderecoDefault.uf = response.data.uf;//uf
+              vm.enderecoDefault.localidade = response.data.localidade;//localidade
+              vm.enderecoDefault.bairro = response.data.bairro;//bairro
+              vm.enderecoDefault.logradouro = response.data.logradouro;
+                
+             
+            }
+        )
+    
+    
+        }
+
+  
 
     /**METODOS DE INICIALIZACAO */
     vm.init = function () {
@@ -64,7 +86,8 @@ function PessoaIncluirAlterarController(
                                 if (pessoaRetorno !== undefined) {
                                     vm.pessoa = pessoaRetorno;
                                     vm.pessoa.dataNascimento = vm.formataDataTela(pessoaRetorno.dataNascimento);
-                                    vm.perfil = vm.pessoa.perfils[0];
+                                    
+                                    vm.perfil = vm.pessoa.perfils=[];
                                 }
                             }
                         );
@@ -73,6 +96,8 @@ function PessoaIncluirAlterarController(
             }
         );
     };
+
+    
 
     /**METODOS DE TELA */
     vm.cancelar = function () {
@@ -222,9 +247,9 @@ function PessoaIncluirAlterarController(
 
     /**METODOS AUXILIARES */
     vm.formataDataJava = function (data) {
-        var dia = data.slice(0, 2);
-        var mes = data.slice(2, 4);
-        var ano = data.slice(4, 8);
+        var dia = data.slice(0, 2);//8,4 - 0,2
+        var mes = data.slice(2, 4);//4,2 - 2,4
+        var ano = data.slice(4, 8);//2,0 - 4,8
 
         return ano + "-" + mes + "-" + dia;
     };
