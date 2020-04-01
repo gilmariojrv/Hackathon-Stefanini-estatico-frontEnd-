@@ -27,7 +27,8 @@ function PessoaIncluirAlterarController(
         dataNascimento: null,
         enderecos: [],
         perfils: [],
-        situacao: false
+        situacao: false,
+        imagem: ""
     };
     vm.enderecoDefault = {
         id: null,
@@ -44,6 +45,15 @@ function PessoaIncluirAlterarController(
     vm.urlPerfil = "http://localhost:8081/treinamento/api/perfils/";
     vm.urlPessoa = "http://localhost:8081/treinamento/api/pessoas/";
     vm.urlbuscaCep = "http://localhost:8081/treinamento/api/enderecos/buscar/" ;
+
+
+
+//     vm.teste = function(){
+
+// console.log(vm.perfil)
+
+
+//     }
 
  
   
@@ -64,6 +74,25 @@ function PessoaIncluirAlterarController(
     
         }
 
+
+        // vm.imagembuscada = function(){
+
+        //     HackatonStefaniniService.listar().then(
+        //         function (response){
+                
+                 
+        //           vm.pessoa.imagem = response.data.imagem ;
+                    
+                 
+        //         }
+        //     )
+        
+        
+        //     }
+
+
+
+        // vm.pessoa.imagem = vm.listaPessoas.imagem ;
   
 
     /**METODOS DE INICIALIZACAO */
@@ -85,9 +114,10 @@ function PessoaIncluirAlterarController(
                             function (pessoaRetorno) {
                                 if (pessoaRetorno !== undefined) {
                                     vm.pessoa = pessoaRetorno;
+                                    console.log(pessoaRetorno);
                                     vm.pessoa.dataNascimento = vm.formataDataTela(pessoaRetorno.dataNascimento);
-                                    
-                                    vm.perfil = vm.pessoa.perfils=[];
+                                    vm.perfil = vm.pessoa.perfils;
+                                   
                                 }
                             }
                         );
@@ -128,6 +158,11 @@ function PessoaIncluirAlterarController(
     vm.incluir = function () {
         vm.pessoa.dataNascimento = vm.formataDataJava(vm.pessoa.dataNascimento);
 
+        
+        vm.pessoa.imagem = document.getElementById("imagemPessoa").getAttribute("src");
+        document.getElementById("imagemPessoa").src = vm.pessoa.imagem;
+
+
         var objetoDados = angular.copy(vm.pessoa);
         var listaEndereco = [];
         angular.forEach(objetoDados.enderecos, function (value, key) {
@@ -148,7 +183,7 @@ function PessoaIncluirAlterarController(
                 }
             });
             if (vm.isNovoPerfil)
-                objetoDados.perfils.push(vm.perfil);
+                objetoDados.perfils = vm.perfil;
         }
         if (vm.acao == "Cadastrar") {
 
@@ -244,6 +279,28 @@ function PessoaIncluirAlterarController(
         );
         return deferred.promise;
     }
+
+
+
+
+    vm.visualizarImg = function () {
+        var preview = document.querySelectorAll('img').item(0);
+        var file = document.querySelector('input[type=file').files[0];
+        var reader = new FileReader();
+
+        reader.onloadend = function () {
+            preview.src = reader.result; // Carrega a imagem em base64
+        };
+
+        if (file) {
+            reader.readAsDataURL(file);
+        } else {
+            preview.src = "";
+        }
+    }
+
+
+
 
     /**METODOS AUXILIARES */
     vm.formataDataJava = function (data) {
