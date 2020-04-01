@@ -4,6 +4,27 @@ HomeController.$inject = ["$rootScope", "$scope", "$location",
 
 function HomeController($rootScope, $scope, $location,
     $q, $filter, $routeParams, HackatonStefaniniService) {
+
+
+        vm.urlPessoa = "http://localhost:8081/treinamento/api/pessoas/";
+
+        vm.imagembuscada = function(){
+
+            HackatonStefaniniService.listar(urlPessoa).then(
+                function (response){
+                
+                 
+                  vm.pessoa.imagem = response.data.imagem ;
+                    
+                 
+                }
+            )
+        
+        
+            }
+
+
+
     vm = this;
     vm.ola = "Olá Mundo!!!";
 

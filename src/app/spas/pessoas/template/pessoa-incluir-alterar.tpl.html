@@ -23,6 +23,19 @@
       <div class="mx-auto" style="width: 200px;">
         <h5 class="modal-title">{{vm.tituloTela}}</h5>
       </div>
+
+
+      <div class="form-group">
+        <img alt="Foto" id="imagemPessoa" src="" style="width:118px; height:140px;" >
+        <input type="file" 
+        id="file" 
+        onchange= "vm.visualizarImg()"
+        ng-model="vm.pessoa.imagem"
+        
+        >
+      </div>
+
+
       <div class="form-group">
         <label for="nomePessoa">Nome: </label>
         <input
@@ -43,6 +56,7 @@
           placeholder="name@example.com"
         />
       </div>
+
       <div class="row">
         <div class="form-group">
           <label for="nascimentoPessoa" style="width: 250px;"
@@ -61,16 +75,23 @@
           <label for="nomePerfil">Perfil</label>
           <div>
             <select
-              style="width: 250px; height: 38px;"
+              style="width: 250px; height: 100px; "
+              class="custom-select" multiple
               ng-class="{'disabledDiv': vm.listaPerfil.length === 0, 'custom-select custom-select-sm': true}"
               ng-options="item as item.nome for item in vm.listaPerfil track by item.id"
+              
               ng-model="vm.perfil"
+              
             >
-              <option value="">-- PERFIL --</option>
+              <option value="">-- Sem Perfil --</option>
             </select>
           </div>
         </div>
       </div>
+
+ 
+
+
 
       <div class="form-check">
         <input
