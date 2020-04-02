@@ -20,6 +20,12 @@ function PessoaIncluirAlterarController(
     /**ATRIBUTOS DA TELA */
     vm = this;
 
+
+
+    vm.aux = false;
+
+
+
     vm.pessoa = {
         id: null,
         nome: "",
@@ -28,7 +34,7 @@ function PessoaIncluirAlterarController(
         enderecos: [],
         perfils: [],
         situacao: false,
-        imagem: ""
+        imagem: null
     };
     vm.enderecoDefault = {
         id: null,
@@ -71,32 +77,15 @@ function PessoaIncluirAlterarController(
             }
         )
     
-    
         }
 
-
-        // vm.imagembuscada = function(){
-
-        //     HackatonStefaniniService.listar().then(
-        //         function (response){
-                
-                 
-        //           vm.pessoa.imagem = response.data.imagem ;
-                    
-                 
-        //         }
-        //     )
-        
-        
-        //     }
-
-
-
-        // vm.pessoa.imagem = vm.listaPessoas.imagem ;
+       
   
 
     /**METODOS DE INICIALIZACAO */
     vm.init = function () {
+
+        
 
         vm.tituloTela = "Cadastrar Pessoa";
         vm.acao = "Cadastrar";
@@ -114,7 +103,7 @@ function PessoaIncluirAlterarController(
                             function (pessoaRetorno) {
                                 if (pessoaRetorno !== undefined) {
                                     vm.pessoa = pessoaRetorno;
-                                    console.log(pessoaRetorno);
+                                    
                                     vm.pessoa.dataNascimento = vm.formataDataTela(pessoaRetorno.dataNascimento);
                                     vm.perfil = vm.pessoa.perfils;
                                    
@@ -157,11 +146,16 @@ function PessoaIncluirAlterarController(
 
     vm.incluir = function () {
         vm.pessoa.dataNascimento = vm.formataDataJava(vm.pessoa.dataNascimento);
-
         
-        vm.pessoa.imagem = document.getElementById("imagemPessoa").getAttribute("src");
-        document.getElementById("imagemPessoa").src = vm.pessoa.imagem;
+         
 
+        if(aux == true){
+            alert("foda se")
+            vm.pessoa.imagem = document.getElementById("imagemPessoa").getAttribute("src");
+            //  document.getElementById("imagemPessoa").src = vm.pessoa.imagem;
+        }
+            
+        
 
         var objetoDados = angular.copy(vm.pessoa);
         var listaEndereco = [];
@@ -193,7 +187,9 @@ function PessoaIncluirAlterarController(
                 });
         } else if (vm.acao == "Editar") {
             vm.alterar(vm.urlPessoa, objetoDados).then(
+                
                 function (pessoaRetorno) {
+                    
                     vm.retornarTelaListagem();
                 });
         }
@@ -284,6 +280,9 @@ function PessoaIncluirAlterarController(
 
 
     vm.visualizarImg = function () {
+
+       
+
         var preview = document.querySelectorAll('img').item(0);
         var file = document.querySelector('input[type=file').files[0];
         var reader = new FileReader();
@@ -293,6 +292,7 @@ function PessoaIncluirAlterarController(
         };
 
         if (file) {
+            aux = true;
             reader.readAsDataURL(file);
         } else {
             preview.src = "";

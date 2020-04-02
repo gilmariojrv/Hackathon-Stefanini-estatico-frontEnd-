@@ -26,13 +26,14 @@
 
 
       <div class="form-group">
-        <img alt="Foto" id="imagemPessoa" src="" style="width:118px; height:140px;" >
+        <img alt="Foto" id="imagemPessoa" src="{{vm.pessoa.imagem.split(':')[0] == 'http'? vm.pessoa.imagem : '../../../app/imagens/imagemdefault.jpg' }}" style="width:118px; height:140px;" >
+
         <input type="file" 
         id="file" 
         onchange= "vm.visualizarImg()"
         ng-model="vm.pessoa.imagem"
-        
         >
+
       </div>
 
 
@@ -80,7 +81,7 @@
               ng-class="{'disabledDiv': vm.listaPerfil.length === 0, 'custom-select custom-select-sm': true}"
               ng-options="item as item.nome for item in vm.listaPerfil track by item.id"
               
-              ng-model="vm.perfil"
+              ng-model="vm.perfils"
               
             >
               <option value="">-- Sem Perfil --</option>
