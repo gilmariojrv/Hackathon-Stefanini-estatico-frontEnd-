@@ -64,19 +64,21 @@ function PessoaIncluirAlterarController(
  
   
     vm.buscarCep = function(){
-
+            if(vm.enderecoDefault.cep.length == 8){
         HackatonStefaniniService.listar(vm.urlbuscaCep + vm.enderecoDefault.cep).then(
             function (response){
-            
-              vm.enderecoDefault.uf = response.data.uf;//uf
-              vm.enderecoDefault.localidade = response.data.localidade;//localidade
-              vm.enderecoDefault.bairro = response.data.bairro;//bairro
-              vm.enderecoDefault.logradouro = response.data.logradouro;
                 
-             
-            }
-        )
-    
+                if (response.data.erro == undefined) {
+                    vm.enderecoDefault.uf = response.data.uf;
+                    vm.enderecoDefault.localidade = response.data.localidade;
+                    vm.enderecoDefault.bairro = response.data.bairro;
+                    vm.enderecoDefault.logradouro = response.data.logradouro;
+                } else {
+                    alert("CEP Invalito!");
+                }
+            
+            })
+            }else{alert("Cep incompleto, digite um cep valido!")}
         }
 
        
@@ -149,7 +151,7 @@ function PessoaIncluirAlterarController(
         
          
 
-        if(aux == true){
+        if(vm.aux == true){
             alert("foda se")
             vm.pessoa.imagem = document.getElementById("imagemPessoa").getAttribute("src");
             //  document.getElementById("imagemPessoa").src = vm.pessoa.imagem;
@@ -176,21 +178,22 @@ function PessoaIncluirAlterarController(
                     vm.isNovoPerfil = false;
                 }
             });
-            if (vm.isNovoPerfil)
+        if (vm.isNovoPerfil)
                 objetoDados.perfils = vm.perfil;
         }
+        console.log(vm.perfil)
+        console.log(objetoDados)
         if (vm.acao == "Cadastrar") {
-
             vm.salvar(vm.urlPessoa, objetoDados).then(
                 function (pessoaRetorno) {
-                    vm.retornarTelaListagem();
+                  vm.retornarTelaListagem();
                 });
         } else if (vm.acao == "Editar") {
             vm.alterar(vm.urlPessoa, objetoDados).then(
                 
                 function (pessoaRetorno) {
                     
-                    vm.retornarTelaListagem();
+                 vm.retornarTelaListagem();
                 });
         }
     };
@@ -292,7 +295,7 @@ function PessoaIncluirAlterarController(
         };
 
         if (file) {
-            aux = true;
+            vm.aux = true;
             reader.readAsDataURL(file);
         } else {
             preview.src = "";
